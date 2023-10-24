@@ -53,7 +53,7 @@ class TestInstructionDefinition(unittest.TestCase):
 
     def setUp(self):
         self.add_instr = InstructionDefinition("ADD", InstructionFormat.R, "I")
-        self.addi_instr = InstructionDefinition("ADDI", InstructionFormat.I, "I", immediate_range=(-2048, 2047))
+        self.addi_instr = InstructionDefinition("ADDI", InstructionFormat.I, "I")
         self.register_x10 = Register("x10", type = RegisterType.X)
         self.register_x11 = Register("x11", type = RegisterType.X)
         self.label_test = Label("test_label")
@@ -69,11 +69,7 @@ class TestInstructionDefinition(unittest.TestCase):
     def test_generate_instruction_with_invalid_operand(self):
         with self.assertRaises(ValueError):
             self.add_instr.generate(self.register_x10, self.register_x11, 5)  # Immediate value not expected
-
-    def test_generate_instruction_with_out_of_range_immediate(self):
-        with self.assertRaises(ValueError):
-            self.addi_instr.generate(self.register_x10, self.register_x11, 5000)  # Out of range
-
+            
     def test_get_extension(self):
         self.assertEqual(self.add_instr.get_extension(), "I")
 

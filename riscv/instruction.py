@@ -53,7 +53,7 @@ class InstructionDefinition:
         :return: A string representing the assembly code.
         """
         if len(operands) != len(self.format.value):
-            raise ValueError(f"Expected {len(self.format)} operands but got {len(operands)}.")
+            raise ValueError(f"Expected {len(self.format.value)} operands but got {len(operands)}.")
         formatted_operands = []
         for i, operand in enumerate(operands):
             expected_type = self.format.value[i]
